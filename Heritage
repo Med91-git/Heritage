@@ -1,0 +1,191 @@
+namespace Heritage
+{
+    internal class Program
+    {
+        public abstract class Animal
+        {
+            protected int _legsCount;
+            protected string _name;
+
+
+            public Animal(string name, int legsCount)
+            {
+                _name = name;
+                _legsCount = legsCount; 
+            }
+
+            public int GetLegsCount()
+            {
+                return _legsCount;
+            }
+            public string GetName()
+            {
+                return _name; 
+            }
+
+            public void Eat()
+            {
+                Console.WriteLine("Je mange");  
+            }
+
+            public virtual void Move()
+            {
+                Console.WriteLine("Je me déplace"); 
+            }
+
+        }
+
+        public abstract class Bipedes : Animal
+        {
+            int _legsCount = 2; 
+            
+            
+            public Bipedes(string name, int legsCount) : base(name, legsCount) 
+            { 
+
+            
+            }
+
+        }
+
+        public abstract class Quadrupedes : Animal
+        {
+            int _legsCount = 4;  
+
+            public Quadrupedes(string name, int legsCount) : base(name, legsCount) 
+            {
+
+
+            } 
+
+        }
+
+        public class Humain : Bipedes
+        {
+            public Humain(string name, int legsCount) : base(name, legsCount)
+            {
+
+
+            }
+
+            public override void Move()
+            {
+                Console.WriteLine("L'etre humain (adulte) marche debout");  
+            }
+
+            public void Parler()
+            {
+                Console.WriteLine("Il parle"); 
+            }
+
+            public void Raisonner()
+            {
+
+                Console.WriteLine("Sa consicence lui permet d'agir indépendamment de ses pulsions instinctives");  
+            }
+        }
+
+        public class Singe : Bipedes
+        {
+            public Singe(string name, int legsCount) : base(name, legsCount) 
+            {
+
+
+            }
+
+            public override void Move()
+            {
+                Console.WriteLine("Le singe marche debout ou accroupie");
+            }
+
+            public void SeDeplacerDansLesArbres()
+            {
+
+                Console.WriteLine("Je me déplace dans les arbres");   
+            }
+        }
+        
+
+        public class Elephant : Quadrupedes
+        {
+
+            public Elephant(string name, int legsCount) : base(name, legsCount)
+            {
+
+
+            }
+
+            public override void Move() 
+            {
+                Console.WriteLine("l'elephant marche debout à 4 pattes");  
+            }
+
+        }
+
+        public class Tortue : Quadrupedes
+        {
+
+            public Tortue(string name, int legsCount) : base(name, legsCount)
+            {
+
+
+            }
+
+            public override void Move()
+            {
+                Console.WriteLine("La tortue marche au sol à 4 pattes"); 
+            }
+
+        }
+
+        public class Lezard : Quadrupedes
+        {
+
+            public Lezard(string name, int legsCount) : base(name, legsCount)
+            {
+
+
+            } 
+
+        }
+
+        static void Main(string[] args)
+        {
+            Humain humain = new Humain("Humain",2);
+            Elephant elephant = new Elephant("Elephant",4);
+            Singe singe = new Singe("Singe", 2);
+            Tortue tortue = new Tortue("Tortue", 4);
+
+            int nbreDePattesHumain = humain.GetLegsCount(); 
+            int nbreDePattesElephant =elephant.GetLegsCount();
+
+            Console.WriteLine("Nombre de pattes selon les espèces : ");
+            Console.WriteLine();
+            Console.WriteLine($"Un humain a {nbreDePattesHumain} pieds");
+            Console.WriteLine($"Un elephant a {nbreDePattesElephant} pattes"); 
+
+
+            List<Animal> animals = new List<Animal>(); 
+
+            animals.Add(humain);
+            animals.Add(elephant);
+            animals.Add(singe);
+            animals.Add(tortue); 
+
+            Console.WriteLine();
+            Console.WriteLine("Déplacement selon les espèces : ");
+            Console.WriteLine();
+            foreach (Animal animal in animals) 
+            {
+                animal.Move();  
+            }
+            Console.WriteLine();
+            Console.WriteLine("Particularités de l'être humain par rapport aux autre animaux :");
+            Console.WriteLine();
+            humain.Parler();
+            humain.Raisonner();  
+
+
+        }
+    }
+}
